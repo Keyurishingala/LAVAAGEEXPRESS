@@ -27,8 +27,9 @@ import color from '../component/color';
 import constant from '../component/constant';
 import BaseScreen from '../component/BaseScreen';
 // import appConfig from '../app.json';
-// import MapView from '../component/MapView';
+
 import {businessNameValidator} from '../helper/Validator';
+import GMapView from '../component/GMapView';
 
 var isHidden = true;
 
@@ -45,9 +46,9 @@ const ServiceRegister = ({navigation}) => {
   }, []);
 
   useEffect(() => {
-    // getLocation();
+    getLocation();
     return () => {
-      // Geolocation.clearWatch();
+      Geolocation.clearWatch();
     };
   }, []);
 
@@ -77,107 +78,107 @@ const ServiceRegister = ({navigation}) => {
     }
   };
 
-  // const hasLocationPermission = async () => {
-  //   if (Platform.OS === 'ios') {
-  //     const hasPermission = await hasPermissionIOS();
-  //     return hasPermission;
-  //   }
+  const hasLocationPermission = async () => {
+    if (Platform.OS === 'ios') {
+      const hasPermission = await hasPermissionIOS();
+      return hasPermission;
+    }
 
-  //   if (Platform.OS === 'android' && Platform.Version < 23) {
-  //     return true;
-  //   }
+    if (Platform.OS === 'android' && Platform.Version < 23) {
+      return true;
+    }
 
-  //   const hasPermission = await PermissionsAndroid.check(
-  //     PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-  //   );
+    const hasPermission = await PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    );
 
-  //   if (hasPermission) {
-  //     return true;
-  //   }
+    if (hasPermission) {
+      return true;
+    }
 
-  //   const status = await PermissionsAndroid.request(
-  //     PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-  //   );
+    const status = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    );
 
-  //   if (status === PermissionsAndroid.RESULTS.GRANTED) {
-  //     return true;
-  //   }
+    if (status === PermissionsAndroid.RESULTS.GRANTED) {
+      return true;
+    }
 
-  //   if (status === PermissionsAndroid.RESULTS.DENIED) {
-  //     ToastAndroid.show(
-  //       'Location permission denied by user.',
-  //       ToastAndroid.LONG,
-  //     );
-  //   } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
-  //     ToastAndroid.show(
-  //       'Location permission revoked by user.',
-  //       ToastAndroid.LONG,
-  //     );
-  //   }
+    if (status === PermissionsAndroid.RESULTS.DENIED) {
+      ToastAndroid.show(
+        'Location permission denied by user.',
+        ToastAndroid.LONG,
+      );
+    } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
+      ToastAndroid.show(
+        'Location permission revoked by user.',
+        ToastAndroid.LONG,
+      );
+    }
 
-  //   return false;
-  // };
+    return false;
+  };
 
-  // const hasPermissionIOS = async () => {
-  //   const openSetting = () => {
-  //     Linking.openSettings().catch(() => {
-  //       Alert.alert('Unable to open settings');
-  //     });
-  //   };
-  //   const status = await Geolocation.requestAuthorization('whenInUse');
+  const hasPermissionIOS = async () => {
+    const openSetting = () => {
+      Linking.openSettings().catch(() => {
+        Alert.alert('Unable to open settings');
+      });
+    };
+    const status = await Geolocation.requestAuthorization('whenInUse');
 
-  //   if (status === 'granted') {
-  //     return true;
-  //   }
+    if (status === 'granted') {
+      return true;
+    }
 
-  //   if (status === 'denied') {
-  //     Alert.alert('Location permission denied');
-  //   }
+    if (status === 'denied') {
+      Alert.alert('Location permission denied');
+    }
 
-  //   if (status === 'disabled') {
-  //     Alert.alert(
-  //       `Turn on Location Services to allow "${appConfig.displayName}" to determine your location.`,
-  //       '',
-  //       [
-  //         {text: 'Go to Settings', onPress: openSetting},
-  //         {text: "Don't Use Location", onPress: () => {}},
-  //       ],
-  //     );
-  //   }
+    if (status === 'disabled') {
+      Alert.alert(
+        `Turn on Location Services to allow "${appConfig.displayName}" to determine your location.`,
+        '',
+        [
+          {text: 'Go to Settings', onPress: openSetting},
+          {text: "Don't Use Location", onPress: () => {}},
+        ],
+      );
+    }
 
-  //   return false;
-  // };
+    return false;
+  };
 
-  // const getLocation = async () => {
-  //   const hasPermission = await hasLocationPermission();
+  const getLocation = async () => {
+    const hasPermission = await hasLocationPermission();
 
-  //   if (!hasPermission) {
-  //     return;
-  //   }
+    if (!hasPermission) {
+      return;
+    }
 
-  //   Geolocation.getCurrentPosition(
-  //     position => {
-  //       setLocation(position);
-  //     },
-  //     error => {
-  //       Alert.alert(`Code ${error.code}`, error.message);
-  //       setLocation(null);
-  //     },
-  //     {
-  //       accuracy: {
-  //         android: 'high',
-  //         ios: 'best',
-  //       },
-  //       enableHighAccuracy: true,
-  //       timeout: 15000,
-  //       maximumAge: 10000,
-  //       distanceFilter: 0,
-  //       forceRequestLocation: true,
-  //       // forceLocationManager: useLocationManager,
-  //       showLocationDialog: true,
-  //     },
-  //   );
-  // };
+    Geolocation.getCurrentPosition(
+      position => {
+        setLocation(position);
+      },
+      error => {
+        Alert.alert(`Code ${error.code}`, error.message);
+        setLocation(null);
+      },
+      {
+        accuracy: {
+          android: 'high',
+          ios: 'best',
+        },
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 10000,
+        distanceFilter: 0,
+        forceRequestLocation: true,
+        // forceLocationManager: useLocationManager,
+        showLocationDialog: true,
+      },
+    );
+  };
 
   return (
     <BaseScreen
@@ -268,10 +269,7 @@ const ServiceRegister = ({navigation}) => {
               borderRadius: 5,
               overflow: 'hidden',
             }}>
-            {/* <MapView
-              coords={location?.coords || null}
-              // onPress={() => getLocation()}
-            /> */}
+            <GMapView coords={location?.coords || null} />
           </View>
           <View
             style={{

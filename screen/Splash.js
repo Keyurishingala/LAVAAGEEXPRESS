@@ -36,7 +36,7 @@ const Splash = ({navigation}) => {
   const openScreen = async () => {
     AsyncStorage.getItem('user').then(async res => {
       if (!res) {
-        navigation.dispatch(StackActions.replace(constant.navServiceRegister));
+        navigation.dispatch(StackActions.replace(constant.navLoginScreen));
       } else {
         navigation.dispatch(StackActions.replace(constant.navMyQueue));
       }

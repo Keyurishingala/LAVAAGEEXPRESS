@@ -57,7 +57,7 @@ const App = () => {
             name={constant.navResetPassword}
             component={ResetPassword}
           />
-          <Stack.Screen name={constant.navMyQueue} component={BottomTabs} />
+          <Stack.Screen name={constant.navMyQueue} component={DrawerScreens} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
@@ -68,51 +68,32 @@ const BottomTabs = () => {
   const [showTabBar, setShowTabBar] = useState(true);
 
   return (
-    <>
-      {/* <SafeAreaView style={{flex: 0, backgroundColor: color.darkBlue}} /> */}
-
-      {/* <SafeAreaView style={{flex: 1, backgroundColor: color.darkBlue}}> */}
-      <TabBarContext.Provider value={{showTabBar, setShowTabBar}}>
-        <Tab.Navigator
-          initialRouteName={constant.navMyQueue}
-          screenOptions={{headerShown: false}}
-          tabBar={props => <BottomBar {...props} />}>
-          <Tab.Screen name={constant.navMyQueue} component={MyQueue} />
-          <Tab.Screen name={constant.navMyServices} component={MyServices} />
-          <Tab.Screen name={constant.navProfile} component={Profile} />
-        </Tab.Navigator>
-      </TabBarContext.Provider>
-
-      {/* </SafeAreaView> */}
-    </>
+    <TabBarContext.Provider value={{showTabBar, setShowTabBar}}>
+      <Tab.Navigator
+        initialRouteName={constant.navMyQueue}
+        screenOptions={{headerShown: false}}
+        tabBar={props => <BottomBar {...props} />}>
+        <Tab.Screen name={constant.navMyQueue} component={MyQueue} />
+        <Tab.Screen name={constant.navMyServices} component={MyServices} />
+        <Tab.Screen name={constant.navProfile} component={Profile} />
+      </Tab.Navigator>
+    </TabBarContext.Provider>
   );
 };
 
-const Home = () => {
+const DrawerScreens = () => {
   return (
     <>
       <Drawer.Navigator
+        useLegacyImplementation
         initialRouteName={constant.navMyQueue}
         screenOptions={{headerShown: false}}
-        // // screenOptions={{
-        // //   headerStyle: {
-        // //     backgroundColor: color.darkBlue,
-
-        // //   },
-        // // }}
-        // drawerStyle={
-        //   {
-        //     // width: wp(85),
-        //   }
-        // }
         drawerContent={props => {
           return <DrawerScreen {...props} />;
         }}>
-        <Drawer.Screen name={'constant.navMyQueue'} component={MyQueue} />
-        <Drawer.Screen name={'constant.navProfile'} component={Profile} />
-
-        {/* {props => <BottomTabs {...props} />} */}
-        {/* </Drawer.Screen> */}
+        <Drawer.Screen name="bottomTabs">
+          {props => <BottomTabs {...props} />}
+        </Drawer.Screen>
       </Drawer.Navigator>
     </>
   );
