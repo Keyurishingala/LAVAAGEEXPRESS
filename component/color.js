@@ -1,0 +1,18 @@
+export default {
+  white: '#ffffff',
+  black: '#000000',
+  blue: '#0783C7',
+  blueLight: '#8ad3fb',
+  darkBlue: '#041D44',
+  facebook: '#3B5998',
+  apple: '#ffffff',
+  grey: '#95A3A6',
+  darkgrey: '#404040',
+  lightgrey: '#808B96',
+  darkRed: '#980003',
+  lightRed: '#FF0500',
+  container: '#E1ECFF',
+  line: '#C6DEF8',
+  line1: '#E8E8E8',
+  linecolor: '#F4F4F4',
+};
