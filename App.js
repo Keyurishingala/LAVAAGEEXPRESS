@@ -26,6 +26,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -48,6 +50,7 @@ const Section = ({children, title}): Node => {
         ]}>
         {children}
       </Text>
+      <FontAwesome name="rocket" size={30} color="#900" />
     </View>
   );
 };
