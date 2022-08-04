@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  txtDate: {marginHorizontal: 10, marginVertical: 5},
+  txtDate: {marginHorizontal: 10, marginVertical: 5, color: color.black},
   txtReq: {
     color: color.white,
     fontSize: 15,
@@ -399,6 +399,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Roboto-Bold',
     letterSpacing: 0.5,
+    color: color.black,
   },
   view1: {
     alignItems: 'center',
@@ -410,7 +411,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 8,
   },
-  txt: {fontSize: 13, fontFamily: 'Roboto-Regular'},
+  txt: {fontSize: 13, fontFamily: 'Roboto-Regular', color: color.black},
   view2: {
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -418,7 +419,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     marginVertical: 15,
   },
-  txtbook: {fontWeight: '700', marginLeft: 15, marginTop: 10},
+  txtbook: {
+    fontWeight: '700',
+    marginLeft: 15,
+    marginTop: 10,
+    color: color.black,
+  },
   view3: {
     flexDirection: 'row',
     alignItems: 'center',
