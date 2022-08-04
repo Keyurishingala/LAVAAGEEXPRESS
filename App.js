@@ -37,11 +37,8 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName={constant.navSplachScreen}
-          // initialRouteName={"demo"}
           screenOptions={{headerShown: false}}>
           <Stack.Screen name={constant.navSplachScreen} component={Splash} />
-          {/* <Stack.Screen name={constant.navSplachScreen} component={demo} /> */}
-
           <Stack.Screen name={constant.navLoginScreen} component={Login} />
           <Stack.Screen name={constant.navRegister} component={Register} />
           <Stack.Screen
