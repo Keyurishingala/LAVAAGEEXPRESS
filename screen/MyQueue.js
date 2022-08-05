@@ -10,6 +10,7 @@ import {
   Modal,
   Alert,
   Linking,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -19,17 +20,15 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import FastImage from 'react-native-fast-image';
+import moment from 'moment';
 
 import BaseScreen from '../component/BaseScreen';
 import color from '../component/color';
-import moment from 'moment';
 import Header from '../component/Header';
-import constant from '../component/constant';
-import FastImage from 'react-native-fast-image';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {CommonActions} from '@react-navigation/native';
-import userstore from '../mobx/userstore';
 import {useTabBar} from '../App';
+import userstore from '../mobx/userstore';
+import {inject, observer} from 'mobx-react';
 
 let offsetY = 0;
 
@@ -213,6 +212,7 @@ const MyQueue = ({navigation}) => {
         titLeft={true}
         // whiteNew={true}
         notification={true}
+        translate={true}
       />
       <View style={styles.main}>
         <Modal
@@ -326,7 +326,7 @@ const MyQueue = ({navigation}) => {
   );
 };
 
-export default MyQueue;
+export default inject('userstore')(observer(MyQueue));
 
 const styles = StyleSheet.create({
   datePickerStyle: {

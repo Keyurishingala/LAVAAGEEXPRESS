@@ -19,16 +19,6 @@ const BottomBar = ({navigation, route}) => {
   const [second, setsecond] = useState(false);
   const [third, setthird] = useState(false);
 
-  // const [visible, setVisible] = useState();
-
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     let val = toJS(userstore?.bol);
-  //     if (val !== null && val !== undefined) {
-  //       setVisible(val);
-  //     }
-  //   }, 1000);
-  // }, [visible]);
   const {showTabBar} = useTabBar();
 
   const animation = useRef(new Animated.Value(0)).current;
@@ -83,7 +73,7 @@ const BottomBar = ({navigation, route}) => {
           {first === true ? (
             <View style={styles.BottomBarView}>
               <FastImage
-                source={require('../component/image/Icn_queuewhite.png')}
+                source={require('../component/image/Icn_queueblue.png')}
                 style={styles.logoImg}
                 resizeMode={FastImage.resizeMode.contain}
               />
@@ -91,7 +81,7 @@ const BottomBar = ({navigation, route}) => {
           ) : (
             <View style={styles.BottomBarView}>
               <FastImage
-                source={require('../component/image/Icn_queueblue.png')}
+                source={require('../component/image/Icn_queuewhite.png')}
                 style={styles.logoImg}
                 resizeMode={FastImage.resizeMode.contain}
               />
@@ -100,7 +90,7 @@ const BottomBar = ({navigation, route}) => {
           <Text
             style={[
               styles.txt,
-              {color: first === true ? color.white : color.blue},
+              {color: first === true ? color.blue : color.white},
             ]}>
             My Queue
           </Text>
@@ -113,7 +103,7 @@ const BottomBar = ({navigation, route}) => {
           {second === true ? (
             <View style={styles.BottomBarView}>
               <FastImage
-                source={require('../component/image/Ic_servicewhite.png')}
+                source={require('../component/image/Ic_serviceblue.png')}
                 style={styles.logoImg}
                 resizeMode={FastImage.resizeMode.contain}
               />
@@ -121,7 +111,7 @@ const BottomBar = ({navigation, route}) => {
           ) : (
             <View style={styles.BottomBarView}>
               <FastImage
-                source={require('../component/image/Ic_serviceblue.png')}
+                source={require('../component/image/Ic_servicewhite.png')}
                 style={styles.logoImg}
                 resizeMode={FastImage.resizeMode.contain}
               />
@@ -130,7 +120,7 @@ const BottomBar = ({navigation, route}) => {
           <Text
             style={[
               styles.txt,
-              {color: second === true ? color.white : color.blue},
+              {color: second === true ? color.blue : color.white},
             ]}>
             My Services
           </Text>
@@ -143,7 +133,7 @@ const BottomBar = ({navigation, route}) => {
           {third === true ? (
             <View style={styles.BottomBarView}>
               <FastImage
-                source={require('../component/image/Icn_profile.png')}
+                source={require('../component/image/Icn_profileblue.png')}
                 style={styles.logoImg}
                 resizeMode={FastImage.resizeMode.contain}
               />
@@ -151,7 +141,7 @@ const BottomBar = ({navigation, route}) => {
           ) : (
             <View style={styles.BottomBarView}>
               <FastImage
-                source={require('../component/image/Icn_profileblue.png')}
+                source={require('../component/image/Icn_profile.png')}
                 style={styles.logoImg}
                 resizeMode={FastImage.resizeMode.contain}
               />
@@ -160,7 +150,7 @@ const BottomBar = ({navigation, route}) => {
           <Text
             style={[
               styles.txt,
-              {color: third === true ? color.white : color.blue},
+              {color: third === true ? color.blue : color.white},
             ]}>
             Profile
           </Text>
