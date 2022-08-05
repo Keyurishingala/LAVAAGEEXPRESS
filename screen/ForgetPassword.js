@@ -52,7 +52,7 @@ const ForgetPassword = ({navigation}) => {
     if (mobileError) {
       setMobileNo({...mobileNo, error: mobileError});
     } else {
-      //   await AsyncStorage.setItem('user', mobileNo?.value);
+      await AsyncStorage.setItem('user', mobileNo?.value);
       navigation.navigate(constant.navVerifyOtp);
     }
   };

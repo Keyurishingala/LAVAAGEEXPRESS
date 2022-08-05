@@ -43,7 +43,7 @@ const DrawerScreen = ({navigation}) => {
         />
         <CommonView
           onPress={() => {
-            // AsyncStorage.removeItem('user');
+            AsyncStorage.removeItem('user');
             navigation.navigate(constant.navLoginScreen);
           }}
           // img={SvgConstant.track1}

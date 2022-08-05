@@ -115,11 +115,7 @@ const MyQueue = ({navigation}) => {
   };
 
   const searchFilterFunction = text => {
-    // Check if searched text is not blank
     if (text) {
-      // Inserted text is not blank
-      // Filter the masterDataSource
-      // Update FilteredDataSource
       const newData = data.filter(function (item) {
         const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
         const textData = text.toUpperCase();
@@ -128,8 +124,6 @@ const MyQueue = ({navigation}) => {
       setFilteredDataSource(newData);
       setSearch(text);
     } else {
-      // Inserted text is blank
-      // Update FilteredDataSource with masterDataSource
       setFilteredDataSource(data);
       setSearch(text);
     }

@@ -48,21 +48,6 @@ const Login = ({navigation}) => {
     setWithFlag(country.flag);
   };
 
-  // const fadeAnim = useRef(new Animated.Value(0)).current;
-
-  // const fadeIn = () => {
-  //   // Will change fadeAnim value to 1 in 5 seconds
-  //   Animated.timing(fadeAnim, {
-  //     toValue: 1,
-  //     duration: 5000,
-  //     useNativeDriver: true, // Add This line
-  //   }).start();
-  // };
-
-  // useEffect(() => {
-  //   fadeIn();
-  // }, []);
-
   useEffect(() => {
     toggleSubview();
   }, []);
@@ -140,7 +125,10 @@ const Login = ({navigation}) => {
                 }}
                 // visible
               />
-              <Text>+{withCallingCode}</Text>
+              <Text
+                style={{color: color.lightgrey, fontFamily: 'Roboto-Regular'}}>
+                +{withCallingCode}
+              </Text>
             </View>
             <View style={styles.li} />
             <TextInput

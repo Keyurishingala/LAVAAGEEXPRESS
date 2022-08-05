@@ -259,7 +259,6 @@ const styles = StyleSheet.create({
   imageView: {
     height: hp(50),
     alignItems: 'center',
-    // justifyContent: 'flex-end',
     justifyContent: 'center',
   },
   txt: {
