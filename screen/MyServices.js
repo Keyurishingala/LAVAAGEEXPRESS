@@ -23,6 +23,8 @@ import color from '../component/color';
 import Header from '../component/Header';
 import {toggleAnimation} from '../component/toggleAnimation';
 import {useTabBar} from '../App';
+import common from '../helper/common';
+import constant from '../component/constant';
 
 var newData = [];
 let offsetY = 0;
@@ -31,10 +33,10 @@ const MyServices = () => {
   const {setShowTabBar} = useTabBar();
 
   const data = [
-    {serviceName: 'Car Wash Exterior', time: '2 Hours'},
-    {serviceName: 'Complete Car wash', time: '1 Hours'},
-    {serviceName: 'Detailed interior car wash', time: '4 Hours'},
-    {serviceName: 'Car Service', time: '12 Hours'},
+    {serviceName: common.translate(constant.lblCarwash), time: '2 Hours'},
+    {serviceName: common.translate(constant.lblcCarWash), time: '1 Hours'},
+    {serviceName: common.translate(constant.lblDcarEash), time: '4 Hours'},
+    {serviceName: common.translate(constant.lblCarService), time: '12 Hours'},
   ];
 
   const [visible, setVisible] = useState(false);
@@ -166,15 +168,19 @@ const MyServices = () => {
           <View style={styles.modalView}>
             <View style={styles.subView}>
               <Text style={styles.modaltxtService}>{serviceName}</Text>
-              <Text style={styles.modaltime}>Estimated Time: {time}</Text>
+              <Text style={styles.modaltime}>
+                {common.translate(constant.EstimatedTime)}: {time}
+              </Text>
               <View style={styles.modalLine} />
-              <Text style={styles.modalAmount}>Add Service Amount:</Text>
+              <Text style={styles.modalAmount}>
+                {common.translate(constant.AddServiceAmount)}:
+              </Text>
               <View style={styles.textInputView}>
                 <Text style={styles.modalDT}>DT</Text>
                 <View style={styles.li} />
                 <TextInput
                   placeholderTextColor={color.lightgrey}
-                  placeholder="Amount"
+                  placeholder={common.translate(constant.Amount)}
                   keyboardType="numeric"
                   value={amount}
                   style={styles.modalInputAmount}
@@ -187,14 +193,18 @@ const MyServices = () => {
                 onPress={() => {
                   setModalVisible(!modalVisible), onSave();
                 }}>
-                <Text style={styles.modalbtnSave}>Save</Text>
+                <Text style={styles.modalbtnSave}>
+                  {common.translate(constant.Save)}
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
         </Modal>
         <View style={styles.serviceView}>
           <View style={styles.lblservice}>
-            <Text style={styles.txtselectService}>Choose ypur service</Text>
+            <Text style={styles.txtselectService}>
+              {common.translate(constant.Chooseyourservice)}
+            </Text>
             <TouchableOpacity
               activeOpacity={0.7}
               onPress={() => toggleListItem()}>
@@ -378,7 +388,7 @@ const styles = StyleSheet.create({
   },
   popEditandDeleteView: {
     position: 'absolute',
-    right: 30,
+    right: 35,
     top: 53,
     backgroundColor: color.white,
     width: wp(30),

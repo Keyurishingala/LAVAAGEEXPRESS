@@ -1,0 +1,34 @@
+{
+    "translation":{
+        "StopRequest":"Demande d'arrêt",
+        "Search":"Chercher",
+        "MyQueue":"Ma file d'attente",
+        "MyServices":"Mes services",
+        "Profile":"Profil",
+        "mainlbl":"Voulez-vous vraiment\nsupprimer cette personne de la liste ?",
+        "txtLeave":"Laisser un message pour cet utilisateur",
+        "Drop":"Goutte",
+        "Cancel":"Annuler",
+        "lblArrivalTime":"Heure d'arrivée prévue",
+        "Car":"Auto",
+        "Make":"Faire",
+        "Color":"Couleur",
+        "PlateNo":"Plaque Non",
+        "EstServiceTime":"Est. Temps de service",
+        "ServiceBooked": "Service réservé",
+        "Carwash":"Lave-Auto",
+        "CarRepair":"Réparation automobile",
+        "Chooseyourservice":"Choisissez votre prestation",
+        "lblCarwash":"Lavage de voiture extérieur",
+        "lblcCarWash":"Lavage de voiture complet",
+        "lblDcarEash":"Lavage de voiture intérieur détaillé",
+        "lblCarService":"Service automobile",
+        "Amount":"Montant",
+        "EstimatedTime":"Temps estimé",
+        "AddServiceAmount":"Ajouter un montant de service",
+        "Save":"sauvegarder",
+        "Edit":"Éditer",
+        "Delete":"Effacer"
+
+    }
+}

@@ -9,15 +9,23 @@ import {
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useTranslation} from 'react-i18next';
 
 import color from './color';
 import FastImage from 'react-native-fast-image';
 import constant from './constant';
 import {inject, observer} from 'mobx-react';
 import userstore from '../mobx/userstore';
+import common from '../helper/common';
 
 const Header = ({...props}) => {
   const navigation = useNavigation();
+  const {t, i18n} = useTranslation();
+
+  const option = [
+    {lbl: 'English', value: 'en'},
+    {lbl: 'French', value: 'fr'},
+  ];
 
   const [visible, setVisible] = useState(false);
 
@@ -118,20 +126,24 @@ const Header = ({...props}) => {
         ) : null}
       </View>
       {visible === true && (
-        <Animated.View style={[style.translate, {transform: [{scale}]}]}>
-          <TouchableOpacity>
-            <Text
-              style={{fontSize: 19, marginHorizontal: 30, marginVertical: 8}}>
-              EN
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text
-              style={{fontSize: 19, marginHorizontal: 30, marginVertical: 8}}>
-              FR
-            </Text>
-          </TouchableOpacity>
-        </Animated.View>
+        <>
+          <Animated.View style={[style.translate, {transform: [{scale}]}]}>
+            {option.map((val, index) => {
+              return (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    i18n.changeLanguage(val.value);
+                    setVisible(false);
+                  }}>
+                  <Text style={{fontSize: 19, color: color.black}}>
+                    {val.lbl}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </Animated.View>
+        </>
       )}
     </View>
   );
@@ -159,9 +171,12 @@ const style = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'center',
     alignItems: 'center',
-    overflow: 'scroll',
     right: 70,
     top: 30,
+    justifyContent: 'space-evenly',
+    height: '150%',
+    // paddingVertical: 5,
+    width: '30%',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -169,6 +184,7 @@ const style = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 3,
+
+    elevation: 5,
   },
 });

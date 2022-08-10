@@ -6,11 +6,12 @@ import {
   TouchableOpacity,
   TextInput,
   Platform,
-  FlatList,
+  // FlatList,
   Modal,
   Alert,
   Linking,
   TouchableWithoutFeedback,
+  ScrollView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -22,13 +23,14 @@ import {
 } from 'react-native-responsive-screen';
 import FastImage from 'react-native-fast-image';
 import moment from 'moment';
+import {inject, observer} from 'mobx-react';
 
 import BaseScreen from '../component/BaseScreen';
 import color from '../component/color';
 import Header from '../component/Header';
 import {useTabBar} from '../App';
-import userstore from '../mobx/userstore';
-import {inject, observer} from 'mobx-react';
+import constant from '../component/constant';
+import common from '../helper/common';
 
 let offsetY = 0;
 
@@ -128,87 +130,13 @@ const MyQueue = ({navigation}) => {
     }
   };
 
-  const renderItems = ({item}) => {
-    return (
-      <View style={styles.main2}>
-        <Text style={styles.txtName}>{item.name}</Text>
-        <View style={styles.view1}>
-          <Text style={styles.txt}>Expected Arrival Time:</Text>
-          <Text
-            style={{
-              fontSize: 13,
-              fontFamily: 'Roboto-Bold',
-              letterSpacing: 0.5,
-            }}>
-            {item.time}
-          </Text>
-        </View>
-        <View style={styles.view2}>
-          <View>
-            <Text style={styles.txt}>Car: {item.car}</Text>
-            <Text style={styles.txt}>Make : {item.make}</Text>
-            <Text style={styles.txt}>Color: {item.color}</Text>
-          </View>
-          <View>
-            <Text style={styles.txt}>Plate No: {item.no}</Text>
-            <Text style={styles.txt}>
-              Est. Service Time: {item.servicetime}
-            </Text>
-          </View>
-        </View>
-        <View style={styles.line} />
-        <Text style={styles.txtbook}>Service Booked</Text>
-        <View style={styles.view3}>
-          <View style={{width: '50%'}}>
-            <Text style={styles.txt}>Car wash</Text>
-          </View>
-          <View style={{width: '50%'}}>
-            <Text style={styles.txt}>Car Repair</Text>
-          </View>
-        </View>
-        <View style={styles.line} />
-        <View style={styles.view4}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            style={styles.btnCall}
-            onPress={() => {
-              dialCall(7990426066);
-            }}>
-            <View style={{height: 15, width: 15}}>
-              <FastImage
-                source={require('../component/image/Path2181.png')}
-                style={styles.logoImg}
-                resizeMode={FastImage.resizeMode.cover}
-              />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => {
-              setModalVisible(true), setnames(item.name);
-            }}
-            style={styles.btnDrops}>
-            <Text
-              style={{
-                color: color.white,
-                fontFamily: 'Roboto-Bold',
-                letterSpacing: 0.5,
-              }}>
-              Drop
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  };
-
   return (
     <BaseScreen
       barStyle={'light-content'}
       translucent={Platform.OS === 'ios' ? true : false}>
       <Header
         icon={true}
-        title={'My Queue'}
+        title={common.translate(constant.MyQueue)}
         titLeft={true}
         // whiteNew={true}
         notification={true}
@@ -233,7 +161,7 @@ const MyQueue = ({navigation}) => {
                   fontFamily: 'Roboto-Regular',
                   color: color.lightgrey,
                 }}>
-                Are you sure, you want to{`\n`}remove this person from the list?
+                {common.translate(constant.mainlbl)}
               </Text>
               <Text
                 style={{
@@ -246,37 +174,45 @@ const MyQueue = ({navigation}) => {
                 {names}
               </Text>
               <TextInput
-                placeholder="Leave a message for this user"
+                placeholder={common.translate(constant.txtLeave)}
                 numberOfLines={10}
                 multiline={true}
                 style={styles.txtInput}
               />
               <View style={styles.btnView}>
                 <TouchableOpacity activeOpacity={0.7} style={styles.btnDrop}>
-                  <Text style={styles.btnText}>Drop</Text>
+                  <Text style={styles.btnText}>
+                    {common.translate(constant.Drop)}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.7}
                   onPress={() => setModalVisible(!modalVisible)}
                   style={styles.btnCancel}>
-                  <Text style={styles.btnText}>Cancel</Text>
+                  <Text style={styles.btnText}>
+                    {common.translate(constant.Cancel)}
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
           </View>
         </Modal>
         <View style={styles.main1}>
-          <View style={styles.submain1}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={styles.submain1}
+            onPress={() => setOpen(true)}>
             <Text style={styles.txtDate}>{d}</Text>
-            <TouchableOpacity
-              activeOpacity={0.7}
-              style={styles.btndate}
-              onPress={() => setOpen(true)}>
+            <View
+              // activeOpacity={0.7}
+              style={styles.btndate}>
               <AntDesign name="caretdown" size={15} color={color.blue} />
-            </TouchableOpacity>
-          </View>
+            </View>
+          </TouchableOpacity>
           <TouchableOpacity activeOpacity={0.7} style={styles.btnReq}>
-            <Text style={styles.txtReq}>Stop Requests</Text>
+            <Text style={styles.txtReq}>
+              {common.translate(constant.stopRequests)}
+            </Text>
           </TouchableOpacity>
         </View>
         <DatePicker
@@ -286,7 +222,6 @@ const MyQueue = ({navigation}) => {
           style={{backgroundColor: color.white}}
           date={date}
           onConfirm={date => {
-            console.log('date', date);
             setOpen(false);
             setDate(date);
           }}
@@ -302,7 +237,7 @@ const MyQueue = ({navigation}) => {
             style={{marginLeft: 10}}
           />
           <TextInput
-            placeholder="Search"
+            placeholder={common.translate(constant.search)}
             value={search}
             onChangeText={text => searchFilterFunction(text)}
             onClear={text => searchFilterFunction('')}
@@ -310,7 +245,7 @@ const MyQueue = ({navigation}) => {
             style={styles.textInput}
           />
         </View>
-        <FlatList
+        {/* <FlatList
           data={filteredDataSource}
           contentContainerStyle={{paddingBottom: 30}}
           keyExtractor={(item, index) => index.toString()}
@@ -319,8 +254,106 @@ const MyQueue = ({navigation}) => {
           showsVerticalScrollIndicator={false}
           bounces={false}
           onScroll={({nativeEvent}) => onScrollToIndex(nativeEvent)}
-          renderItem={renderItems}
-        />
+          // renderItem={renderItems}
+        /> */}
+        <ScrollView
+          scrollEventThrottle={16}
+          alwaysBounceVertical={false}
+          contentContainerStyle={{paddingBottom: 30}}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+          onScroll={({nativeEvent}) => onScrollToIndex(nativeEvent)}>
+          {data.map((item, index) => {
+            return (
+              <View key={index.toString()} style={styles.main2}>
+                <Text style={styles.txtName}>{item.name}</Text>
+                <View style={styles.view1}>
+                  <Text style={styles.txt}>
+                    {common.translate(constant.lblArrivalTime)}:
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 13,
+                      fontFamily: 'Roboto-Bold',
+                      letterSpacing: 0.5,
+                    }}>
+                    {item.time}
+                  </Text>
+                </View>
+                <View style={styles.view2}>
+                  <View>
+                    <Text style={styles.txt}>
+                      {common.translate(constant.Car)}: {item.car}
+                    </Text>
+                    <Text style={styles.txt}>
+                      {common.translate(constant.Make)} : {item.make}
+                    </Text>
+                    <Text style={styles.txt}>
+                      {common.translate(constant.Color)}: {item.color}
+                    </Text>
+                  </View>
+                  <View>
+                    <Text style={styles.txt}>
+                      {common.translate(constant.PlateNo)}: {item.no}
+                    </Text>
+                    <Text style={styles.txt}>
+                      {common.translate(constant.EstServiceTime)}:{' '}
+                      {item.servicetime}
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.line} />
+                <Text style={styles.txtbook}>
+                  {common.translate(constant.ServiceBooked)}
+                </Text>
+                <View style={styles.view3}>
+                  <View style={{width: '50%'}}>
+                    <Text style={styles.txt}>
+                      {common.translate(constant.Carwash)}
+                    </Text>
+                  </View>
+                  <View style={{width: '50%'}}>
+                    <Text style={styles.txt}>
+                      {common.translate(constant.CarRepair)}
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.line} />
+                <View style={styles.view4}>
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={styles.btnCall}
+                    onPress={() => {
+                      dialCall(7990426066);
+                    }}>
+                    <View style={{height: 15, width: 15}}>
+                      <FastImage
+                        source={require('../component/image/Path2181.png')}
+                        style={styles.logoImg}
+                        resizeMode={FastImage.resizeMode.cover}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => {
+                      setModalVisible(true), setnames(item.name);
+                    }}
+                    style={styles.btnDrops}>
+                    <Text
+                      style={{
+                        color: color.white,
+                        fontFamily: 'Roboto-Bold',
+                        letterSpacing: 0.5,
+                      }}>
+                      {common.translate(constant.Drop)}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            );
+          })}
+        </ScrollView>
       </View>
     </BaseScreen>
   );

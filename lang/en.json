@@ -1,0 +1,33 @@
+{
+    "translation":{
+        "StopRequest":"Stop Request",
+        "Search":"Search",
+        "MyQueue":"My Queue",
+        "MyServices":"My Services",
+        "Profile":"Profile",
+        "mainlbl":"Are you sure, you want to\nremove this person from the list?",
+        "txtLeave":"Leave a message for this user",
+        "Drop":"Drop",
+        "Cancel":"Cancel",
+        "lblArrivalTime":"Expected Arrival Time",
+        "Car":"Car",
+        "Make":"Make", 
+        "Color":"Color",
+        "PlateNo":"Plate No",
+        "EstServiceTime":"Est. Service Time",
+        "ServiceBooked": "Service Booked",
+        "Carwash":"Car wash",
+        "CarRepair":"Car Repair",
+        "Chooseyourservice":"Choose your service",
+        "lblCarwash":"Car Wash Exterior",
+        "lblcCarWash":"Complete Car wash",
+        "lblDcarEash":"Detailed interior car wash",
+        "lblCarService":"Car Service",
+        "Amount":"Amount",
+        "EstimatedTime":"Estimated Time",
+        "AddServiceAmount":"Add Service Amount",
+        "Save":"Save",
+        "Edit":"Edit",
+        "Delete":"Delete"
+    }
+}

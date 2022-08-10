@@ -13,6 +13,7 @@ import constant from './constant';
 import userstore from '../mobx/userstore';
 import {toJS} from 'mobx';
 import {useTabBar} from '../App';
+import common from '../helper/common';
 
 const BottomBar = ({navigation, route}) => {
   const [first, setfirst] = useState(true);
@@ -92,7 +93,7 @@ const BottomBar = ({navigation, route}) => {
               styles.txt,
               {color: first === true ? color.blue : color.white},
             ]}>
-            My Queue
+            {common.translate(constant.MyQueue)}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -122,7 +123,7 @@ const BottomBar = ({navigation, route}) => {
               styles.txt,
               {color: second === true ? color.blue : color.white},
             ]}>
-            My Services
+            {common.translate(constant.MyServices)}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -152,7 +153,7 @@ const BottomBar = ({navigation, route}) => {
               styles.txt,
               {color: third === true ? color.blue : color.white},
             ]}>
-            Profile
+            {common.translate(constant.Profile)}
           </Text>
         </TouchableOpacity>
       </View>
