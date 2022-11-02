@@ -22,6 +22,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Geolocation from 'react-native-geolocation-service';
+import Geocoder from 'react-native-geocoding';
 
 import color from '../component/color';
 import constant from '../component/constant';
@@ -158,6 +159,9 @@ const ServiceRegister = ({navigation}) => {
 
     Geolocation.getCurrentPosition(
       position => {
+        console.log('post', position.coords.latitude);
+        console.log('post', position.coords.longitude);
+
         setLocation(position);
       },
       error => {
