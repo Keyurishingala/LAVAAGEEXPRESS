@@ -9,6 +9,6 @@ import i18n from './lang/i18n';
 
 import {name as appName} from './app.json';
 
-// LogBox.ignoreAllLogs();
+LogBox.ignoreAllLogs();
 
 AppRegistry.registerComponent(appName, () => App);
