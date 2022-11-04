@@ -1,9 +1,9 @@
-import {View, Text, SafeAreaView} from 'react-native';
-import React, {createContext, useContext, useState} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { View, Text, SafeAreaView } from 'react-native';
+import React, { createContext, useContext, useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Splash from './screen/Splash';
 import constant from './component/constant';
@@ -21,7 +21,7 @@ import Profile from './screen/Profile';
 
 import BottomBar from './component/BottomBar';
 import DrawerScreen from './screen/DrawerScreen';
-import {Provider} from 'mobx-react';
+import { Provider } from 'mobx-react';
 import userstore from './mobx/userstore';
 import Login from './screen/Login';
 
@@ -37,7 +37,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName={constant.navSplachScreen}
-          screenOptions={{headerShown: false}}>
+          screenOptions={{ headerShown: false }}>
           <Stack.Screen name={constant.navSplachScreen} component={Splash} />
           <Stack.Screen name={constant.navLoginScreen} component={Login} />
           <Stack.Screen name={constant.navRegister} component={Register} />
@@ -65,10 +65,10 @@ const BottomTabs = () => {
   const [showTabBar, setShowTabBar] = useState(true);
 
   return (
-    <TabBarContext.Provider value={{showTabBar, setShowTabBar}}>
+    <TabBarContext.Provider value={{ showTabBar, setShowTabBar }}>
       <Tab.Navigator
         initialRouteName={constant.navMyQueue}
-        screenOptions={{headerShown: false}}
+        screenOptions={{ headerShown: false }}
         tabBar={props => <BottomBar {...props} />}>
         <Tab.Screen name={constant.navMyQueue} component={MyQueue} />
         <Tab.Screen name={constant.navMyServices} component={MyServices} />
@@ -84,7 +84,7 @@ const DrawerScreens = () => {
       <Drawer.Navigator
         useLegacyImplementation
         initialRouteName={constant.navMyQueue}
-        screenOptions={{headerShown: false}}
+        screenOptions={{ headerShown: false }}
         drawerContent={props => {
           return <DrawerScreen {...props} />;
         }}>
